@@ -1,10 +1,11 @@
 vcpkg_from_git(
     OUT_SOURCE_PATH SOURCE_PATH
     URL https://git.assembla.com/portaudio.git
-    REF c5d2c51bd6fe354d0ee1119ba932bfebd3ebfacc
+    REF 799a6834a58592eadc5712cba73b35956dc51579
     PATCHES
         fix-library-can-not-be-found.patch
         fix-include.patch
+        fix-exports.patch
 )
 
 # NOTE: the ASIO backend will be built automatically if the ASIO-SDK is provided
