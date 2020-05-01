@@ -8,11 +8,17 @@ vcpkg_from_git(
 )
 
 # NOTE: building with PA_BUILD_SHARED=OFF for pa-opus-audio
-# NOTE: ONLY_STATIC_CRT due to linking to Node
+# NOTE: ONLY_STATIC_CRT due to linking to Node (only needed on Windows)
+
+if (WIN32)
+    set(ONLY_STATIC_CRT "ONLY_STATIC_CRT")
+else()
+    set(ONLY_STATIC_CRT)
+endif()
 
 vcpkg_check_linkage(
     ONLY_STATIC_LIBRARY
-    ONLY_STATIC_CRT
+    ${ONLY_STATIC_CRT}
 )
 
 # NOTE: the ASIO backend will be built automatically if the ASIO-SDK is provided

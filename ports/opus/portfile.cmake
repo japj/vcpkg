@@ -11,11 +11,17 @@ vcpkg_from_github(
   master)
 
 # NOTE: building with ONLY_STATIC_LIBRARY=OFF for pa-opus-audio
-# NOTE: ONLY_STATIC_CRT due to linking to Node
+# NOTE: ONLY_STATIC_CRT due to linking to Node (only needed on Windows)
+
+if (WIN32)
+    set(ONLY_STATIC_CRT "ONLY_STATIC_CRT")
+else()
+    set(ONLY_STATIC_CRT)
+endif()
 
 vcpkg_check_linkage(
     ONLY_STATIC_LIBRARY
-    ONLY_STATIC_CRT
+    ${ONLY_STATIC_CRT}
 )
 
 vcpkg_check_features(OUT_FEATURE_OPTIONS FEATURE_OPTIONS
