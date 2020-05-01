@@ -1,11 +1,13 @@
 vcpkg_from_git(
     OUT_SOURCE_PATH SOURCE_PATH
     URL https://git.assembla.com/portaudio.git
-    REF c5d2c51bd6fe354d0ee1119ba932bfebd3ebfacc
+    REF 799a6834a58592eadc5712cba73b35956dc51579
     PATCHES
         fix-library-can-not-be-found.patch
         fix-include.patch
 )
+
+# NOTE: building with PA_BUILD_SHARED=OFF for pa-opus-audio
 
 # NOTE: the ASIO backend will be built automatically if the ASIO-SDK is provided
 # in a sibling folder of the portaudio source in vcpkg/buildtrees/portaudio/src
@@ -18,6 +20,7 @@ vcpkg_configure_cmake(
         -DPA_USE_WDMKS=ON
         -DPA_USE_WMME=ON
         -DPA_LIBNAME_ADD_SUFFIX=OFF
+        -DPA_BUILD_SHARED=OFF
     OPTIONS_DEBUG
         -DPA_ENABLE_DEBUG_OUTPUT:BOOL=ON
 )
