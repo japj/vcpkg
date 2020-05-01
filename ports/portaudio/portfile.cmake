@@ -8,6 +8,12 @@ vcpkg_from_git(
 )
 
 # NOTE: building with PA_BUILD_SHARED=OFF for pa-opus-audio
+# NOTE: ONLY_STATIC_CRT due to linking to Node
+
+vcpkg_check_linkage(
+    ONLY_STATIC_LIBRARY
+    ONLY_STATIC_CRT
+)
 
 # NOTE: the ASIO backend will be built automatically if the ASIO-SDK is provided
 # in a sibling folder of the portaudio source in vcpkg/buildtrees/portaudio/src

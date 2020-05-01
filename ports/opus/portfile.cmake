@@ -11,9 +11,11 @@ vcpkg_from_github(
   master)
 
 # NOTE: building with ONLY_STATIC_LIBRARY=OFF for pa-opus-audio
+# NOTE: ONLY_STATIC_CRT due to linking to Node
 
 vcpkg_check_linkage(
     ONLY_STATIC_LIBRARY
+    ONLY_STATIC_CRT
 )
 
 vcpkg_check_features(OUT_FEATURE_OPTIONS FEATURE_OPTIONS
